@@ -1,4 +1,5 @@
-import { Play } from "lucide-react";
+import { Link } from "react-router-dom";
+import editaLogo from "@/assets/edita-logo.png";
 
 const Footer = () => {
   return (
@@ -6,12 +7,10 @@ const Footer = () => {
       <div className="container mx-auto">
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           <div className="space-y-4">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                <Play className="w-4 h-4 text-primary-foreground fill-current" />
-              </div>
-              <span className="text-xl font-bold">VidAds</span>
-            </div>
+            <Link to="/" className="flex items-center gap-3">
+              <img src={editaLogo} alt="Edita logo" className="w-10 h-10" />
+              <span className="text-xl font-bold">Edita</span>
+            </Link>
             <p className="text-muted-foreground">
               Create stunning video ads that convert, instantly.
             </p>
@@ -20,10 +19,10 @@ const Footer = () => {
           <div>
             <h3 className="font-semibold mb-4">Product</h3>
             <ul className="space-y-2">
-              <li><a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Templates</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Features</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Pricing</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Showcase</a></li>
+              <li><Link to="/templates" className="text-muted-foreground hover:text-foreground transition-colors">Templates</Link></li>
+              <li><a href="#features" className="text-muted-foreground hover:text-foreground transition-colors">Features</a></li>
+              <li><a href="#pricing" className="text-muted-foreground hover:text-foreground transition-colors">Pricing</a></li>
+              <li><a href="#showcase" className="text-muted-foreground hover:text-foreground transition-colors">Showcase</a></li>
             </ul>
           </div>
 
@@ -48,7 +47,7 @@ const Footer = () => {
         </div>
 
         <div className="pt-8 border-t border-border text-center text-muted-foreground">
-          <p>&copy; 2025 VidAds. All rights reserved.</p>
+          <p>&copy; 2025 Edita. All rights reserved.</p>
         </div>
       </div>
     </footer>

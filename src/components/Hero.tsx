@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import { Play } from "lucide-react";
 import videoTemplate1 from "@/assets/video-template-1.jpg";
 import videoTemplate2 from "@/assets/video-template-2.jpg";
@@ -19,13 +20,15 @@ const Hero = () => {
             </h1>
             
             <p className="text-xl text-muted-foreground max-w-lg">
-              VidAds: Your platform for effortlessly creating video ad templates that convert.
+              Edita: Your platform for effortlessly creating video ad templates that convert.
             </p>
 
             <div className="flex flex-wrap gap-4">
-              <Button size="lg" className="text-lg px-8">
-                Browse Templates
-              </Button>
+              <Link to="/templates">
+                <Button size="lg" className="text-lg px-8">
+                  Browse Templates
+                </Button>
+              </Link>
               <Button size="lg" variant="outline" className="text-lg px-8">
                 <Play className="w-5 h-5 mr-2" />
                 Watch Demo
