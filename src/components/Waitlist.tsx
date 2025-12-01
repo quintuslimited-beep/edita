@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const Waitlist = () => {
   const [email, setEmail] = useState("");
@@ -12,15 +13,38 @@ const Waitlist = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate submission
-    setTimeout(() => {
+    try {
+      const { error } = await supabase
+        .from('waitlist')
+        .insert([{ email }]);
+
+      if (error) {
+        if (error.code === '23505') { // Unique constraint violation
+          toast({
+            title: "Already registered!",
+            description: "This email is already on our waitlist.",
+            variant: "destructive",
+          });
+        } else {
+          throw error;
+        }
+      } else {
+        toast({
+          title: "You're on the list! 🎉",
+          description: "We'll notify you when Edita launches.",
+        });
+        setEmail("");
+      }
+    } catch (error) {
+      console.error('Error adding to waitlist:', error);
       toast({
-        title: "You're on the list! 🎉",
-        description: "We'll notify you when Edita launches.",
+        title: "Something went wrong",
+        description: "Please try again later.",
+        variant: "destructive",
       });
-      setEmail("");
+    } finally {
       setIsSubmitting(false);
-    }, 1000);
+    }
   };
 
   return (
