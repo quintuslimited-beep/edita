@@ -28,10 +28,9 @@ const Navbar = () => {
           </div>
 
           <div className="flex items-center gap-3">
-            <Button variant="ghost" className="hidden md:inline-flex">
-              Log In
-            </Button>
-            <Button>Sign Up Free</Button>
+            <a href="#waitlist">
+              <Button>Join Waitlist</Button>
+            </a>
           </div>
         </div>
       </div>

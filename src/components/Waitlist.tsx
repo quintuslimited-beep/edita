@@ -48,7 +48,7 @@ const Waitlist = () => {
   };
 
   return (
-    <section className="py-24 px-6 bg-primary/5">
+    <section id="waitlist" className="py-24 px-6 bg-primary/5">
       <div className="container mx-auto max-w-4xl text-center">
         <h2 className="text-4xl md:text-5xl font-bold mb-6">
           Join the Waitlist
