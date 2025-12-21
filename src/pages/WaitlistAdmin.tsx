@@ -17,24 +17,50 @@ const WaitlistAdmin = () => {
   const [entries, setEntries] = useState<WaitlistEntry[]>([]);
   const [loading, setLoading] = useState(true);
   const [session, setSession] = useState(null);
+  const [isAdmin, setIsAdmin] = useState(false);
   const { toast } = useToast();
 
+  const checkAdminRole = async (userId: string) => {
+    const { data, error } = await supabase
+      .from('user_roles')
+      .select('role')
+      .eq('user_id', userId)
+      .eq('role', 'admin')
+      .maybeSingle();
+    
+    return !error && data !== null;
+  };
+
   useEffect(() => {
-    // Check if user is authenticated
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    // Check if user is authenticated and has admin role
+    supabase.auth.getSession().then(async ({ data: { session } }) => {
       setSession(session);
       if (session) {
-        fetchWaitlist();
+        const hasAdminRole = await checkAdminRole(session.user.id);
+        setIsAdmin(hasAdminRole);
+        if (hasAdminRole) {
+          fetchWaitlist();
+        } else {
+          setLoading(false);
+        }
       } else {
         setLoading(false);
       }
     });
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, session) => {
       setSession(session);
       if (session) {
-        fetchWaitlist();
+        const hasAdminRole = await checkAdminRole(session.user.id);
+        setIsAdmin(hasAdminRole);
+        if (hasAdminRole) {
+          fetchWaitlist();
+        } else {
+          setEntries([]);
+          setLoading(false);
+        }
       } else {
+        setIsAdmin(false);
         setEntries([]);
         setLoading(false);
       }
@@ -108,6 +134,30 @@ const WaitlistAdmin = () => {
             <CardContent>
               <p className="text-muted-foreground">
                 Please log in with your admin account to access the waitlist.
+              </p>
+            </CardContent>
+          </Card>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (!isAdmin) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Navbar />
+        <div className="container mx-auto px-6 py-24 max-w-4xl">
+          <Card>
+            <CardHeader>
+              <CardTitle>Access Denied</CardTitle>
+              <CardDescription>
+                You do not have permission to view this page.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <p className="text-muted-foreground">
+                This page is restricted to administrators only.
               </p>
             </CardContent>
           </Card>
