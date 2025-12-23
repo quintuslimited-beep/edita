@@ -16,10 +16,10 @@ const Footer = () => {
               Create stunning video ads that convert, instantly.
             </p>
             <div className="flex gap-4 mt-4">
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
+              <a href="https://x.com/edita_inc?s=21" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
                 <Twitter size={20} />
               </a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
+              <a href="https://www.instagram.com/edita_inc?igsh=cWlwc3gxYnBmd2Qx&utm_source=qr" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
                 <Instagram size={20} />
               </a>
             </div>
