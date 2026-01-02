@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Twitter, Instagram } from "lucide-react";
+import { Twitter, Instagram, Linkedin } from "lucide-react";
 import editaLogo from "@/assets/edita-logo.png";
 
 const Footer = () => {
@@ -21,6 +21,9 @@ const Footer = () => {
               </a>
               <a href="https://www.instagram.com/edita_inc?igsh=cWlwc3gxYnBmd2Qx&utm_source=qr" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
                 <Instagram size={20} />
+              </a>
+              <a href="https://linkedin.com/company/edita-inc" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
+                <Linkedin size={20} />
               </a>
             </div>
           </div>
