@@ -16,7 +16,7 @@ const Hero = () => {
             </h1>
             
             <p className="text-lg text-muted-foreground font-medium">
-              Built for Entrepreneurs, Creators & Online Stores
+              Empowering Small Businesses with Affordable Video Ads Templates.
             </p>
 
             <p className="text-muted-foreground max-w-lg leading-relaxed">
